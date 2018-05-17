@@ -17,10 +17,10 @@
     name: ansible-tower-cli
   become: true
 
-- name: Install ManageIQ module
-  pip:
-    name: manageiq-client
-  become: true
+#- name: Install ManageIQ module
+#  pip:
+#    name: manageiq-client
+#  become: true
 
 - name: Install python2-boto
   yum:
@@ -76,36 +76,39 @@
     name: "openshift-ansible-contrib"
     description: "sync openshift-ansible-contrib"
     organization: "Default"
-    scm_url: https://github.com/strategicdesignteam/openshift-ansible-contrib.git
+    scm_url: https://github.com/waynedovey/openshift-ansible-contrib.git
     scm_type: git
     scm_branch: master
     scm_update_on_launch: true
     state: present
     tower_config_file: "~/.tower_cli.cfg"
+    scm_credential: "admin"
 
 - name: Add tower project for ansible-redhat-access-insights-client
   tower_project:
     name: "ansible-redhat-access-insights-client"
     description: "sync ansible-redhat-access-insights-client"
     organization: "Default"
-    scm_url: https://github.com/strategicdesignteam/ansible-redhat-access-insights-client.git
+    scm_url: https://github.com/waynedovey/ansible-redhat-access-insights-client.git
     scm_type: git
     scm_branch: master
     scm_update_on_launch: true
     state: present
     tower_config_file: "~/.tower_cli.cfg"
+    scm_credential: "admin"
 
 - name: Add tower project for cfme-ansible
   tower_project:
     name: "cfme-ansible"
     description: "sync cfme-ansible"
     organization: "Default"
-    scm_url: https://github.com/strategicdesignteam/cfme-ansible.git
+    scm_url: https://github.com/waynedovey/cfme-ansible.git
     scm_type: git
     scm_branch: master
     scm_update_on_launch: true
     state: present
-    tower_config_file: "~/.tower_cli.cfg"
+    tower_config_file: "~/.tower_cli.cfg" 
+    scm_credential: "admin"
 
 - name: Sync project openshift-ansible-contrib
   command: tower-cli project update -n openshift-ansible-contrib

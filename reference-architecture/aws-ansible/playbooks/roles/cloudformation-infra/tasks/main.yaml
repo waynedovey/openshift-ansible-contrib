@@ -222,6 +222,9 @@
     stack_name: "{{ stack_name }}"
     region: "{{ region }}"
   register: stack
+  failed_when:
+    - "'msg' in stack and 'does not exist' not in stack.msg"
+    - "'ansible_facts' not in stack"
 
 - name: Add CNS Gluster Nodes with io1
   cloudformation:
